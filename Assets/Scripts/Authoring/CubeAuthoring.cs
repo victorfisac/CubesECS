@@ -27,10 +27,11 @@ namespace CubesECS.Authoring
                 speed = m_speed
             });
 
+            Unity.Mathematics.Random _random = new Unity.Mathematics.Random((uint)UnityEngine.Random.Range(0, int.MaxValue));
+
             pManager.AddComponentData(pEntity, new Bouncing() {
-                canJump = Random.Range(0, 2),
-                maxHeight = m_maxHeight,
-                waveIntensity = m_heightIntensity
+                maxHeight = Unity.Mathematics.math.clamp(_random.NextFloat(-1f, m_maxHeight), 0f, m_maxHeight)/m_maxHeight,
+                waveIntensity = m_heightIntensity,
             });
         }
         #endregion
