@@ -691,7 +691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd4e6681cbdadd4c88c4eef70750384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_waveScale: 1.5
+  m_waveScale: 5
   m_calmDuration: 13
   m_audioSource: {fileID: 1691267538}
 --- !u!1 &1691267536
