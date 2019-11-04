@@ -3,7 +3,15 @@
 
 namespace CubesECS.Behaviours
 {
-    public class AudioWaveProvider : MonoBehaviour
+    public interface IAudioWaveProvider
+    {
+        float CurrentWave { get; }
+        float MaxHeight { get; }
+        float WaveIntensity { get; }
+    }
+
+
+    public class AudioWaveProvider : MonoBehaviour, IAudioWaveProvider
     {
         #region Static Fields
         private static AudioWaveProvider m_instance = null;
@@ -30,7 +38,6 @@ namespace CubesECS.Behaviours
         #region Private Fields
         private float[] m_samples = null;
         private float m_waveValue = 0f;
-        private int m_currentRandom = 0;
 
         private const int SAMPLE_SIZE = 1024;
         #endregion
@@ -45,8 +52,6 @@ namespace CubesECS.Behaviours
 
         private void Update()
         {
-            m_currentRandom = Random.Range(0, 10);
-
             UpdateWaveValue();
         }
 
@@ -115,11 +120,6 @@ namespace CubesECS.Behaviours
 
                 return m_waveItensity;
             }
-        }
-
-        public int CurrentRandom
-        {
-            get { return m_currentRandom; }
         }
         #endregion
     }

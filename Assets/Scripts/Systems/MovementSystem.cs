@@ -13,7 +13,7 @@ namespace CubesECS.Systems
     {   
         #region Structs
         [BurstCompile]
-        private struct MovementJob : IJobForEach<Translation, Movement, NonUniformScale>
+        private struct MovementJob : IJobForEach<Translation, Movement>
         {
             public float deltaTime;
             public float heightFactor;
@@ -22,15 +22,15 @@ namespace CubesECS.Systems
 
             private const float MAX_LENGTH = 25f;
 
-            public void Execute(ref Translation pPosition, ref Movement pMovement, ref NonUniformScale pScale)
+            public void Execute(ref Translation pPosition, ref Movement pMovement)
             {
                 pPosition.Value.z += pMovement.speed*deltaTime;
                 
                 if (pPosition.Value.z > MAX_LENGTH)
                     pPosition.Value.z = 1f;
                 
-                bool _canJump = pMovement.bouncing;
-                pPosition.Value.y = (_canJump ? math.lerp(pPosition.Value.y, heightFactor*maxHeight, deltaTime*waveIntensity) : 0f);
+                if (pMovement.bouncing == 1)
+                    pPosition.Value.y = math.lerp(pPosition.Value.y, heightFactor*maxHeight*pMovement.jumpForce, deltaTime*waveIntensity);
             }
         }
         #endregion
@@ -41,9 +41,9 @@ namespace CubesECS.Systems
         {
             var job = new MovementJob {
                 deltaTime = Time.deltaTime,
-                heightFactor = 0f, // AudioWaveProvider.Instance.CurrentWave,
-                maxHeight = 1f, // AudioWaveProvider.Instance.MaxHeight,
-                waveIntensity = 20f // AudioWaveProvider.Instance.WaveIntensity
+                heightFactor = AudioWaveProvider.Instance.CurrentWave,
+                maxHeight = AudioWaveProvider.Instance.MaxHeight,
+                waveIntensity = AudioWaveProvider.Instance.WaveIntensity
             };
             
             return job.Schedule(this, inputDeps);

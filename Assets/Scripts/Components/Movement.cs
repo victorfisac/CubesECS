@@ -6,6 +6,7 @@ namespace CubesECS.Components
     public struct Movement : IComponentData
     {
         public float speed;
-        public bool bouncing;
+        public int bouncing;
+        public float jumpForce;
     }
 }

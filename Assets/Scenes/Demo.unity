@@ -15,9 +15,9 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 1
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_FogColor: {r: 0.21698111, g: 0.21698111, b: 0.21698111, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.01
+  m_FogDensity: 0.11
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -33,7 +33,7 @@ RenderSettings:
   m_HaloTexture: {fileID: 0}
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
   m_DefaultReflectionMode: 0
-  m_DefaultReflectionResolution: 128
+  m_DefaultReflectionResolution: 256
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
@@ -51,7 +51,7 @@ LightmapSettings:
     m_IndirectOutputScale: 1
     m_AlbedoBoost: 1
     m_EnvironmentLightingMode: 0
-    m_EnableBakedLightmaps: 1
+    m_EnableBakedLightmaps: 0
     m_EnableRealtimeLightmaps: 1
   m_LightmapEditorSettings:
     serializedVersion: 12
@@ -357,7 +357,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 217478596}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.25, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_Children: []
   m_Father: {fileID: 1345702773}
@@ -430,7 +430,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -599,7 +599,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 59.999996
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -624,13 +624,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: -0.101444185, y: 0.892045, z: -0.31201553, w: -0.31082347}
-  m_LocalPosition: {x: 13.08, y: 2.3, z: 17}
+  m_LocalRotation: {x: -0.091643676, y: 0.8953042, z: -0.24603498, w: -0.35985905}
+  m_LocalPosition: {x: 14.57, y: 1.36, z: 18.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 38.296, y: 218.75, z: 0.947}
+  m_LocalEulerAnglesHint: {x: 30.432001, y: 224.02899, z: 0.86200005}
 --- !u!114 &963194229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -691,8 +691,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd4e6681cbdadd4c88c4eef70750384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_waveScale: 5
-  m_calmDuration: 13
+  m_waveScale: 2
+  m_calmDuration: 15
+  m_maxHeight: 1.5
+  m_waveItensity: 20
   m_audioSource: {fileID: 1691267538}
 --- !u!1 &1691267536
 GameObject:
@@ -986,7 +988,7 @@ MonoBehaviour:
   _SceneAsset: {fileID: 102900000, guid: 606b353fae30b4a47a2d64cf54174cf4, type: 3}
   _HierarchyColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   AutoLoadScene: 1
-  m_SubSceneHeader: {fileID: 11400000, guid: de03f0f0a790f6b4e8370d9cc1dd27ca, type: 2}
+  m_SubSceneHeader: {fileID: 11400000, guid: f08a9e13889804160a68a144a7d7a69b, type: 2}
 --- !u!4 &1768417068
 Transform:
   m_ObjectHideFlags: 0
