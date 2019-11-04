@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Unity.Entities;
 using CubesECS.Components;
-
+using CubesECS.Behaviours;
 
 namespace CubesECS.Authoring
 {
@@ -24,14 +24,8 @@ namespace CubesECS.Authoring
         public void Convert(Entity pEntity, EntityManager pManager, GameObjectConversionSystem pConversionSystem)
         {
             pManager.AddComponentData(pEntity, new Movement() {
-                speed = m_speed
-            });
-
-            Unity.Mathematics.Random _random = new Unity.Mathematics.Random((uint)UnityEngine.Random.Range(0, int.MaxValue));
-
-            pManager.AddComponentData(pEntity, new Bouncing() {
-                maxHeight = Unity.Mathematics.math.clamp(_random.NextFloat(-1f, m_maxHeight), 0f, m_maxHeight)/m_maxHeight,
-                waveIntensity = m_heightIntensity,
+                speed = m_speed,
+                bouncing = ((Random.Range(0, 10) % 2) == 0)
             });
         }
         #endregion

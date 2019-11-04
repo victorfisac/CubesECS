@@ -56,17 +56,17 @@ MonoBehaviour:
       reflection:
         blendType: 0
         reflectionQuality: 2
-        maxDistance: 71
-        iterationCount: 20
-        stepSize: 3
-        widthModifier: 0.5
-        reflectionBlur: 1
+        maxDistance: 50
+        iterationCount: 25
+        stepSize: 2
+        widthModifier: 1
+        reflectionBlur: 1.25
         reflectBackfaces: 0
       intensity:
-        reflectionMultiplier: 1
+        reflectionMultiplier: 1.25
         fadeDistance: 100
         fresnelFade: 1
-        fresnelFadePower: 1.32
+        fresnelFadePower: 1.25
       screenEdgeMask:
         intensity: 0.02
   depthOfField:
@@ -89,7 +89,7 @@ MonoBehaviour:
       lowPercent: 45
       highPercent: 95
       minLuminance: -5
-      maxLuminance: 1
+      maxLuminance: 0.25
       keyValue: 0.25
       dynamicKeyValue: 1
       adaptationType: 0

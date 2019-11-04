@@ -10,30 +10,27 @@ using Unity.Mathematics;
 namespace CubesECS.Systems
 {
     public class MovementSystem : JobComponentSystem
-    {
-        #region Private Fields
-        private bool m_canJump = false;
-        #endregion
-
-        
+    {   
         #region Structs
         [BurstCompile]
-        private struct MovementJob : IJobForEach<Translation, Movement, Bouncing, NonUniformScale>
+        private struct MovementJob : IJobForEach<Translation, Movement, NonUniformScale>
         {
             public float deltaTime;
             public float heightFactor;
+            public float maxHeight;
+            public float waveIntensity;
 
             private const float MAX_LENGTH = 25f;
 
-            public void Execute(ref Translation pPosition, ref Movement pMovement, ref Bouncing pBouncing, ref NonUniformScale pScale)
+            public void Execute(ref Translation pPosition, ref Movement pMovement, ref NonUniformScale pScale)
             {
                 pPosition.Value.z += pMovement.speed*deltaTime;
                 
                 if (pPosition.Value.z > MAX_LENGTH)
                     pPosition.Value.z = 1f;
                 
-                bool _canJump = (pScale.Value.x > 0.1f);
-                pPosition.Value.y = (_canJump ? math.lerp(pPosition.Value.y, heightFactor*pBouncing.maxHeight, deltaTime*pBouncing.waveIntensity) : 0f);
+                bool _canJump = pMovement.bouncing;
+                pPosition.Value.y = (_canJump ? math.lerp(pPosition.Value.y, heightFactor*maxHeight, deltaTime*waveIntensity) : 0f);
             }
         }
         #endregion
@@ -44,7 +41,9 @@ namespace CubesECS.Systems
         {
             var job = new MovementJob {
                 deltaTime = Time.deltaTime,
-                heightFactor = AudioWaveProvider.Instance.CurrentWave
+                heightFactor = 0f, // AudioWaveProvider.Instance.CurrentWave,
+                maxHeight = 1f, // AudioWaveProvider.Instance.MaxHeight,
+                waveIntensity = 20f // AudioWaveProvider.Instance.WaveIntensity
             };
             
             return job.Schedule(this, inputDeps);
